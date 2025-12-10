@@ -519,8 +519,13 @@ body::after {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 50%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(91, 0, 255, 0.3) 50%, transparent 100%);
+    height: 60%; /* Aumenta a altura da sombra */
+    /* Aumente o nível de preto/roxo no degradê */
+    background: linear-gradient(to top, 
+        rgba(0, 0, 0, 0.95) 0%, /* Aumenta opacidade para 95% */
+        rgba(91, 0, 255, 0.4) 50%, 
+        transparent 100%
+    );
     pointer-events: none;
 }
 
