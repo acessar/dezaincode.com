@@ -260,3 +260,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 if ('ontouchstart' in window) {
     document.body.classList.add('touch-device');
 }
+
+// --- 5. BOTÃO AGENDAR CHATBOT ---
+function openChatbot() {
+    if (window.Chatling) {
+        window.Chatling.open();
+    } else {
+        console.error('Chatling object not found. Make sure the embed script is loaded.');
+        alert('O chatbot não está disponível no momento. Tente novamente mais tarde.');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Botão Agendar
+    const agendarBtn = document.getElementById('agendar-chatbot-btn');
+    if (agendarBtn) {
+        agendarBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openChatbot();
+        });
+    }
+    
+    // Cards do carrossel - Abrir chatbot ao clicar
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            openChatbot();
+        });
+    });
+});
