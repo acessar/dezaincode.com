@@ -1,0 +1,1304 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* Degradê preto → roxo profundo */
+    background: linear-gradient(180deg, #000000 0%, #0a0015 50%, #110022 100%);
+    background-attachment: fixed;
+    color: #FFFFFF;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+/* Grid overlay sutil */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: 
+        linear-gradient(rgba(138, 43, 226, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(138, 43, 226, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+}
+
+/* Glow superior (roxo difuso) */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: rgba(147, 51, 234, 0.2); /* purple-600 com 20% */
+    filter: blur(150px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Glow inferior direito */
+.futuristic-glow-bottom {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    height: 300px;
+    background: rgba(139, 92, 246, 0.15); /* violet-600 com 15% */
+    filter: blur(120px);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* Loader tech-futurista */
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(91, 0, 255, 0.2);
+    border-top: 3px solid #5B00FF;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    box-shadow: 0 0 20px rgba(91, 0, 255, 0.5);
+}
+
+.loader-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animações suaves */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes neonGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(91, 0, 255, 0.5),
+                    0 0 20px rgba(91, 0, 255, 0.3),
+                    0 0 30px rgba(91, 0, 255, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(91, 0, 255, 0.7),
+                    0 0 30px rgba(91, 0, 255, 0.5),
+                    0 0 45px rgba(91, 0, 255, 0.3);
+    }
+}
+
+/* Banner Hero Tech */
+.hero-banner {
+    min-height: 50vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Logo Container - Estilo Premium */
+.hero-content .logo-container {
+    display: flex;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: visible;
+    box-shadow: 0 0 40px rgba(91, 0, 255, 0.6),
+                0 0 80px rgba(106, 0, 244, 0.4),
+                0 0 120px rgba(91, 0, 255, 0.2);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.8s ease-out;
+    border: 3px solid rgba(91, 0, 255, 0.8);
+    margin-bottom: 2rem;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+/* Glow circular atrás do logo */
+.hero-content .logo-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(91, 0, 255, 0.3) 0%, transparent 70%);
+    z-index: -1;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+.hero-content .logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    border-radius: 50%;
+}
+
+/* Título ICARUS - Grande e Elegante */
+.brand-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    letter-spacing: 4px;
+    margin: 1.5rem 0 1rem 0;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+    text-shadow: 0 0 30px rgba(91, 0, 255, 0.6);
+    line-height: 1.2;
+}
+
+/* Tagline */
+.tagline {
+    font-size: 1.1rem;
+    animation: fadeInUp 0.8s ease-out 0.5s both;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Linha Divisória Roxa */
+.divider-line {
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #5B00FF, transparent);
+    margin: 0 auto 3rem auto;
+    box-shadow: 0 0 15px rgba(91, 0, 255, 0.8);
+    animation: fadeInUp 0.8s ease-out 0.7s both;
+}
+
+.text {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Container Principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    background: transparent;
+    min-height: auto;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+
+/* Seção de Contato */
+.contact-section {
+    padding: 1rem 0 0.5rem 0;
+    text-align: center;
+    background: transparent;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(91, 0, 255, 0.5);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #5B00FF, transparent);
+    margin: 1rem auto;
+    box-shadow: 0 0 10px rgba(91, 0, 255, 0.8);
+}
+
+/* Grid de Contato */
+.contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 0.5rem;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+/* Container de Botões de Redes Sociais - Apenas Ícones */
+.social-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    animation: slideInLeft 0.8s ease-out 0.4s both;
+    margin-bottom: 0.5rem;
+    margin-top: -0.5rem;
+}
+
+/* Botões de Redes Sociais - Apenas Ícone */
+.social-icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(91, 0, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(168, 85, 247, 0.4);
+    box-shadow: 
+        0 4px 18px rgba(91, 0, 255, 0.25),
+        0 0 28px rgba(138, 43, 226, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon-button::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(139, 92, 246, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.social-icon-button:hover {
+    transform: scale(1.1);
+    background: rgba(91, 0, 255, 0.22);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 
+        0 6px 28px rgba(91, 0, 255, 0.4),
+        0 0 45px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.social-icon-button:hover::before {
+    opacity: 1;
+}
+
+.social-icon-button:active {
+    transform: scale(0.95);
+}
+
+.social-icon-button .button-icon {
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.social-icon-button:hover .button-icon {
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.8));
+    transform: scale(1.05);
+}
+
+/* Carrossel de Serviços Tech */
+.services-carousel-section {
+    padding: 2rem 0;
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* Container Principal - Âncora para os botões */
+.services-carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px; /* Espaço lateral para os botões */
+    display: block;
+}
+
+/* Área de Scroll do Carrossel */
+.services-carousel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 0.5rem 0;
+    cursor: grab;
+    user-select: none;
+    width: 100%;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.services-carousel:active {
+    cursor: grabbing;
+}
+
+.services-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.service-card {
+    flex: 0 0 90%;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.service-card:active {
+    transform: scale(0.98);
+}
+
+.service-card-image {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 28px rgba(91, 0, 255, 0.25),
+                inset 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(91, 0, 255, 0.25);
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.service-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(91, 0, 255, 0.3) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.service-card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    z-index: 2;
+}
+
+.service-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    text-shadow: 
+        0 0 8px rgba(255, 255, 255, 0.5),
+        0 0 15px rgba(168, 85, 247, 0.3),
+        0 0 25px rgba(91, 0, 255, 0.2),
+        0 0 35px rgba(138, 43, 226, 0.15),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
+    position: relative;
+    filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.3));
+}
+
+.service-card-title::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(139, 92, 246, 0.05));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(2px);
+    opacity: 0.4;
+}
+
+.service-card-description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 300;
+    text-shadow: 
+        0 0 6px rgba(255, 255, 255, 0.4),
+        0 0 12px rgba(168, 85, 247, 0.3),
+        0 0 20px rgba(91, 0, 255, 0.2),
+        0 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.3px;
+    filter: drop-shadow(0 0 4px rgba(168, 85, 247, 0.25));
+}
+
+/* Removidos estilos específicos - todos os cards usam o mesmo estilo padrão do card 1 */
+
+/* Botões de Navegação Premium do Carrossel */
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 15; /* Alto z-index para ficar acima do conteúdo dos cards */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(91, 0, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(168, 85, 247, 0.3);
+    box-shadow: 
+        0 4px 15px rgba(91, 0, 255, 0.2),
+        0 0 25px rgba(138, 43, 226, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    pointer-events: auto;
+}
+
+.carousel-nav-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(139, 92, 246, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.carousel-nav-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    background: rgba(91, 0, 255, 0.25);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 
+        0 6px 28px rgba(91, 0, 255, 0.4),
+        0 0 45px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.carousel-nav-btn:hover::before {
+    opacity: 1;
+}
+
+.carousel-nav-btn:active {
+    transform: translateY(-50%) scale(0.95);
+    box-shadow: 
+        0 2px 15px rgba(91, 0, 255, 0.4),
+        0 0 30px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.carousel-nav-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+    transition: all 0.3s ease;
+}
+
+.carousel-nav-btn:hover svg {
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.8));
+    transform: scale(1.1);
+}
+
+/* Posicionamento dos Botões - Flutuantes nas Laterais */
+.carousel-nav-prev {
+    left: 0;
+}
+
+.carousel-nav-next {
+    right: 0;
+}
+
+/* Efeito de brilho pulsante sutil */
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow: 
+            0 4px 22px rgba(91, 0, 255, 0.35),
+            0 0 32px rgba(138, 43, 226, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 
+            0 4px 28px rgba(91, 0, 255, 0.45),
+            0 0 42px rgba(138, 43, 226, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+}
+
+.carousel-nav-btn:not(:hover) {
+    animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* Botões Tech-Futuristas com Glassmorphism */
+.button-container {
+    animation: slideInLeft 0.8s ease-out 0.5s both;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.button-container:nth-child(2) { animation-delay: 0.7s; }
+
+.main-button {
+    /* Base */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem; /* 12px */
+    width: 100%;
+    max-width: 320px;
+    height: 60px;
+    margin: 0 auto;
+    
+    /* Texto */
+    color: #ffffff;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    font-size: 1rem;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    
+    /* Glass Effect - Mesma tonalidade dos botões de redes sociais */
+    background: rgba(91, 0, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Borda neon roxa */
+    border: 1.5px solid rgba(168, 85, 247, 0.45);
+    
+    /* Glow/Sombra neon - Mesma tonalidade dos botões de redes sociais */
+    box-shadow: 
+        0 4px 22px rgba(91, 0, 255, 0.35),
+        0 0 32px rgba(138, 43, 226, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    
+    /* Transições */
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+/* Reflexo diagonal (vidro futurista) */
+.main-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    opacity: 0.07;
+    background: linear-gradient(
+        135deg, 
+        transparent 40%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 60%
+    );
+    transform: rotate(-45deg);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Hover - Mesma tonalidade dos botões de redes sociais */
+.main-button:hover {
+    transform: scale(1.04);
+    background: rgba(91, 0, 255, 0.22);
+    border-color: rgba(168, 85, 247, 0.6);
+    box-shadow: 
+        0 6px 28px rgba(91, 0, 255, 0.4),
+        0 0 45px rgba(138, 43, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Active/Click */
+.main-button:active {
+    transform: scale(0.98);
+}
+
+.main-button span,
+.button-icon {
+    position: relative;
+    z-index: 1;
+}
+
+.button-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    stroke-width: 2.5;
+    transition: all 0.3s ease;
+}
+
+.main-button:hover .button-icon {
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9));
+    transform: scale(1.05);
+}
+
+.button-container p {
+    margin-top: 0.8rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+    font-weight: 300;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+}
+
+.button-container p.text {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 400;
+}
+
+/* Botão Flutuante WhatsApp Tech */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 56px;
+    height: 56px;
+    background: rgba(91, 0, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(91, 0, 255, 0.6),
+                0 0 40px rgba(91, 0, 255, 0.4),
+                inset 0 0 15px rgba(91, 0, 255, 0.2);
+    border: 2px solid rgba(91, 0, 255, 0.6);
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.floating-whatsapp::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+    border-radius: 50%;
+}
+
+.floating-whatsapp:hover::before {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.08);
+    background: rgba(91, 0, 255, 0.3);
+    box-shadow: 0 0 30px rgba(91, 0, 255, 0.8),
+                0 0 60px rgba(91, 0, 255, 0.6),
+                inset 0 0 20px rgba(91, 0, 255, 0.3);
+    border-color: rgba(106, 0, 244, 0.9);
+}
+
+.floating-whatsapp:active {
+    transform: scale(0.95);
+}
+
+.floating-whatsapp svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+    position: relative;
+    z-index: 1;
+}
+
+.floating-whatsapp:hover svg {
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+/* Mapa Tech */
+.map-container {
+    animation: slideInRight 0.8s ease-out 0.9s both;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.map-wrapper {
+    width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(91, 0, 255, 0.4),
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(91, 0, 255, 0.3);
+}
+
+.map-wrapper:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(91, 0, 255, 0.6),
+                inset 0 0 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(91, 0, 255, 0.6);
+}
+
+.map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Footer Tech */
+footer {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #FFFFFF;
+    padding: 1.5rem 0 1rem;
+    margin-top: 2rem;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    border-top: 2px solid rgba(168, 85, 247, 0.4);
+    box-shadow: 0 -10px 35px rgba(91, 0, 255, 0.25);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(168, 85, 247, 0.25);
+    padding-top: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 300;
+    text-align: center;
+}
+
+.text-footer {
+    margin-top: 0.5rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.text-footer a {
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    text-shadow: 
+        0 0 12px rgba(168, 85, 247, 0.6),
+        0 0 20px rgba(91, 0, 255, 0.4),
+        0 0 30px rgba(138, 43, 226, 0.3);
+}
+
+.text-footer a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+    text-shadow: 
+        0 0 20px rgba(168, 85, 247, 1),
+        0 0 35px rgba(168, 85, 247, 0.8),
+        0 0 50px rgba(91, 0, 255, 0.7),
+        0 0 70px rgba(91, 0, 255, 0.5),
+        0 0 90px rgba(138, 43, 226, 0.4);
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.8));
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Elementos com fade-in no scroll */
+.fade-in-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .hero-banner {
+        min-height: auto;
+        padding: 2rem 1rem;
+    }
+    
+    .brand-title {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+        margin: 1rem 0 0.8rem 0;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .divider-line {
+        width: 150px;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-content .logo-container {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-content .logo-container::after {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .hero-content .logo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .container {
+        box-shadow: none;
+    }
+    
+    .services-carousel-section {
+        padding: 1.5rem 0;
+    }
+    
+    /* Container Full Width - Remove padding lateral excessivo */
+    .services-carousel-container {
+        padding: 0; /* Remove padding lateral completamente */
+        max-width: 100%;
+    }
+    
+    /* Carrossel sem padding extra em mobile */
+    .services-carousel {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    /* Cards mais largos e imersivos - quase full width */
+    .service-card {
+        flex: 0 0 90%; /* 90% da largura para aparência imersiva */
+    }
+    
+    .service-card-image {
+        height: 280px;
+        border-radius: 12px;
+    }
+    
+    /* Proteção do texto - padding lateral extra para evitar sobreposição dos botões */
+    .service-card-content {
+        padding: 1.5rem 2.8rem; /* Padding lateral aumentado (esquerda/direita) para proteger do overlay */
+    }
+    
+    .service-card-title {
+        font-size: 1.3rem;
+    }
+    
+    .service-card-description {
+        font-size: 0.85rem;
+    }
+    
+    /* Botões menores e em overlay sobre os cards */
+    .carousel-nav-btn {
+        width: 40px;
+        height: 40px;
+        z-index: 20; /* Z-index alto para garantir que fiquem acima do conteúdo */
+    }
+    
+    .carousel-nav-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* Botões posicionados como overlay nas bordas dos cards */
+    .carousel-nav-prev {
+        left: 10px;
+    }
+    
+    .carousel-nav-next {
+        right: 10px;
+    }
+    
+    .contact-section {
+        padding: 1.5rem 0;
+    }
+    
+    .contact-grid {
+        gap: 1.5rem;
+        max-width: 300px;
+        width: 100%;
+        padding: 0 1rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .social-buttons-container {
+        gap: 1.2rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .social-icon-button {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .social-icon-button .button-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .main-button {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+        max-width: 280px;
+        height: 52px;
+    }
+    
+    .map-wrapper {
+        height: 250px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .floating-whatsapp {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .floating-whatsapp svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-banner {
+        padding: 1.5rem 1rem;
+    }
+
+    .brand-title {
+        font-size: 2rem;
+        letter-spacing: 1.5px;
+    }
+    
+    .tagline {
+        font-size: 0.95rem;
+    }
+    
+    .divider-line {
+        width: 120px;
+    }
+    
+    .hero-content .logo-container {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1.2rem;
+    }
+    
+    .hero-content .logo-container::after {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .services-carousel-section {
+        padding: 1rem 0;
+    }
+    
+    /* Container Full Width - Sem padding lateral */
+    .services-carousel-container {
+        padding: 0; /* Remove padding completamente em telas muito pequenas */
+        max-width: 100%;
+    }
+    
+    /* Carrossel sem padding extra em mobile pequeno */
+    .services-carousel {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    /* Cards ainda mais largos em telas pequenas - máxima imersão */
+    .service-card {
+        flex: 0 0 95%; /* 95% da largura para máxima imersão */
+        min-width: 0;
+    }
+    
+    .service-card-image {
+        height: 260px;
+        border-radius: 12px;
+    }
+    
+    /* Proteção do texto - padding lateral adequado para evitar sobreposição */
+    .service-card-content {
+        padding: 1.2rem 2.5rem; /* Padding lateral para proteger do overlay dos botões */
+    }
+    
+    .service-card-title {
+        font-size: 1.2rem;
+    }
+    
+    .service-card-description {
+        font-size: 0.8rem;
+    }
+    
+    /* Botões menores em telas muito pequenas - overlay sobre os cards */
+    .carousel-nav-btn {
+        width: 36px;
+        height: 36px;
+        z-index: 20; /* Z-index alto para garantir que fiquem acima do conteúdo */
+    }
+    
+    .carousel-nav-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    /* Botões overlay nas bordas dos cards */
+    .carousel-nav-prev {
+        left: 8px;
+    }
+    
+    .carousel-nav-next {
+        right: 8px;
+    }
+
+    .contact-grid {
+        gap: 1.2rem;
+        max-width: 280px;
+        width: 100%;
+        padding: 0 1rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .social-buttons-container {
+        gap: 1rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .social-icon-button {
+        width: 46px;
+        height: 46px;
+    }
+    
+    .social-icon-button .button-icon {
+        width: 22px;
+        height: 22px;
+    }
+
+    .main-button {
+        max-width: 260px;
+        padding: 0.8rem 1.2rem;
+    }
+}
+
+/* Ajuste para Tablets e PC */
+@media (min-width: 768px) {
+    .services-carousel-container {
+        padding: 0 70px; /* Mais espaço lateral em telas maiores */
+    }
+    
+    .service-card {
+        flex: 0 0 32%;
+        min-width: 320px;
+    }
+    
+    .services-carousel {
+        justify-content: center;
+    }
+    
+    .carousel-nav-btn {
+        width: 52px;
+        height: 52px;
+    }
+    
+    .carousel-nav-btn svg {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .carousel-nav-prev {
+        left: 0;
+    }
+    
+    .carousel-nav-next {
+        right: 0;
+    }
+}
